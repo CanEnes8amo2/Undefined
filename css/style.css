@@ -9,6 +9,7 @@
 
 body {
     font-family: 'Varela Round', sans-serif;
+    position: relative;
 }
 .modal-login {
     color: #636363;
