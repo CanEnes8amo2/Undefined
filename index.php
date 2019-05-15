@@ -1,3 +1,31 @@
+<?php
+$error = "";
+if(isset($_POST['submit'])) {
+    if(!empty($_POST['username']) && !empty($_POST['password'])) {
+        require("formdb.php");
+        $username = trim($_POST['username']);
+        $password = md5($_POST['password']);
+      
+        $sql = "SELECT * FROM gebruikers WHERE username = '". $username."'";
+        
+        if($result = $conn->query($sql)) {
+            $aantal = $result->num_rows;
+            if($aantal == 1) {
+                $user = $result->fetch_row();
+                session_start();
+                $_SESSION['user'] = $user[1];
+                $_SESSION['ingelogd'] = true;
+                header("Location: ingelogddb.php");
+            } else {
+                $error = "Username or password incorrect.";
+            }
+        }
+    } else {
+        $error = "Username en password zijn verplicht.";
+    } 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,18 +116,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/examples/actions/confirmation.php" method="post">
+                    <!-- <form action="/examples/actions/confirmation.php" method="post"> -->
+                    <form method="post">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
-                            <input type="text" class="form-control" placeholder="Username" required="required">
+                            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
                         </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i>
-                            <input type="password" class="form-control" placeholder="Password" required="required">					
+                            <input type="password" class="form-control" placeholder="Password" name="password" required="required">					
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+                            <input type="submit" name="submit" class="btn btn-primary btn-block btn-lg" value="Login">
                         </div>
+                        <?php echo $error; ?>
                     </form>				
                 </div>
                 <div class="modal-footer">
