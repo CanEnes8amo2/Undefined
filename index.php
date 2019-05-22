@@ -1,16 +1,16 @@
 <?php
 // $error = "";
-if(isset($_POST['submit'])) {
-    if(!empty($_POST['username']) && !empty($_POST['password'])) {
-        require("formdb.php");
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        require "formdb.php";
         $username = trim($_POST['username']);
         $password = md5($_POST['password']);
-      
-        $sql = "SELECT * FROM gebruikers WHERE username = '". $username."'AND password = '". $password."'";
-        
-        if($result = $conn->query($sql)) {
+
+        $sql = "SELECT * FROM gebruikers WHERE username = '" . $username . "'AND password = '" . $password . "'";
+
+        if ($result = $conn->query($sql)) {
             $aantal = $result->num_rows;
-            if($aantal == 1) {
+            if ($aantal == 1) {
                 $user = $result->fetch_row();
                 session_start();
                 $_SESSION['user'] = $user[1];
@@ -23,10 +23,10 @@ if(isset($_POST['submit'])) {
                 echo '</script>';
             }
         }
-    } 
+    }
     // else {
     //     $error = "Username en password zijn verplicht.";
-    // } 
+    // }
 }
 ?>
 
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])) {
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">Restaurant Jamie Oliver</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -77,8 +77,8 @@ if(isset($_POST['submit'])) {
     <div class="container h-100">
         <div class="row h-100 align-items-center">
         <div class="col-12 text-center">
-            <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
-            <p class="lead">A great starter layout for a landing page</p>
+            <h1 class="font-weight-light">Restaurant Jamie Oliver</h1>
+            <p class="lead">Homepagina van het restaurant!</p>
         </div>
         </div>
     </div>
@@ -111,12 +111,40 @@ if(isset($_POST['submit'])) {
   <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
 </div>
 
+
+
+<table>
+ <tr>
+  <th>Id</th>
+  <th>Username</th>
+  <th>Password</th>
+ </tr>
+
+<?php
+require "formdb.php";
+$sql = "SELECT * FROM form";
+// mysqli_query($conn, $form);
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["id"] . "</td><td>" . $row["naam"] . "</td><td>"
+            . $row["bericht"] . "</td></tr>";
+    }
+    echo "</table>";
+} else {echo "0 results";}
+$conn->close();
+?>
+</table>
+
+
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <div class="modal-header">				
-                    <h4 class="modal-title">Member Login</h4>
+                <div class="modal-header">
+                    <h4 class="modal-title">Inloggen</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -124,24 +152,24 @@ if(isset($_POST['submit'])) {
                     <form method="post">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
-                            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
+                            <input type="text" class="form-control" placeholder="Gebruikersnaam" name="username" required="required">
                         </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i>
-                            <input type="password" class="form-control" placeholder="Password" name="password" required="required">					
+                            <input type="password" class="form-control" placeholder="Wachtwoord" name="password" required="required">
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-primary btn-block btn-lg" value="Login">
                         </div>
-                    </form>				
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="#">Forgot Password?</a>
+                    <p>Bezoekers krijgen de inloggegevens om een recensie te plaatsen. <br> Dit is om neppe recensies te voorkomen.</p>
                 </div>
             </div>
         </div>
-    </div>     
-    
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

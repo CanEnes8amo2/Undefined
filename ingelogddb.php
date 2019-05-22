@@ -4,7 +4,15 @@ session_start();
 if (isset($_SESSION['ingelogd'])) {
     if(isset($_POST['formSubmit'])) {
         if(!empty($_POST['formName']) && !empty($_POST['formMessage'])) {
-            header("Location: http://google.nl");
+            require("formdb.php");
+
+            $username = $_POST['formName'];
+            $message = $_POST['formMessage'];
+
+            $query = "INSERT INTO form (naam, bericht) VALUES('$username', '$message')";
+            mysqli_query($conn, $query);
+
+            header("Location: index.php#section3");
         } else {
             $error = "Naam en bericht is vereist.";
         }
@@ -26,7 +34,7 @@ if (isset($_SESSION['ingelogd'])) {
 </head>
 <body>
     <form method="post" class="border border-light p-5" >
-        <p class="h4 mb-4 text-center">Insert Into Database</p>
+        <p class="h4 mb-4 text-center">Recensie Plaatsen</p>
         <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" autocomplete="off" name="formName" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAAbNJREFUWAntV8FqwkAQnaymUkpChB7tKSfxWCie/Yb+gbdeCqGf0YsQ+hU95QNyDoWCF/HkqdeiIaEUqyZ1ArvodrOHxanQOiCzO28y781skKwFW3scPV1/febP69XqarNeNTB2KGs07U3Ttt/Ozp3bh/u7V7muheQf6ftLUWyYDB5yz1ijuPAub2QRDDunJsdGkAO55KYYjl0OUu1VXOzQZ64Tr+IiPXedGI79bQHdbheCIAD0dUY6gV6vB67rAvo6IxVgWVbFy71KBKkAFaEc2xPQarXA931ot9tyHphiPwpJgSbfe54Hw+EQHMfZ/msVEEURjMfjCjbFeG2dFxPo9/sVOSYzxmAwGIjnTDFRQLMQAjQ5pJAQkCQJ5HlekeERxHEsiE0xUUCzEO9AmqYQhiF0Oh2Yz+ewWCzEY6aYKKBZCAGYs1wuYTabKdNNMWWxnaA4gp3Yry5JBZRlWTXDvaozUgGTyQSyLAP0dbb3DtQlmcan0yngT2ekE9ARc+z4AvC7nauh9iouhpcGamJeX8XF8MaClwaeROWRA7nk+tUnyzGvZrKg0/40gdME/t8EvgG0/NOS6v9NHQAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
         <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message" name="formMessage"></textarea>
         <!-- <div class="input-group mb-4">
