@@ -58,15 +58,15 @@ if (isset($_POST['submit'])) {
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-            <a class="nav-link" href="#section1">Home
+            <a class="nav-link" href="#section1">Het Restaurant
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#section2">About</a>
+            <a class="nav-link" href="#section2">In de pers</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#section3">Services</a>
+            <a class="nav-link" href="#section3">Onze klanten</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#myModal" class="trigger-btn" data-toggle="modal"><i class="fa fa-user"></i> Inloggen</a>
@@ -88,60 +88,44 @@ if (isset($_POST['submit'])) {
     </header>
 
     <!-- Page Content -->
-    <div id="section1" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+    <div id="section1" class="container-fluid" style="padding-top:70px;padding-bottom:70px">
+  <h1>Het Restaurant</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam pariatur blanditiis explicabo architecto recusandae mollitia maxime, fuga vel voluptate optio nemo dolores tenetur reiciendis obcaecati modi quidem dicta. Iure ea rem aspernatur porro similique ipsa esse deleniti minus non, ipsum, corrupti nesciunt. Veritatis recusandae exercitationem consequuntur minima provident odio explicabo est rem ipsum eaque cum nulla repellendus, deserunt minus alias itaque maiores hic neque. Beatae quae id consequatur inventore asperiores porro saepe consectetur voluptatem, reprehenderit quam soluta recusandae eum voluptates quo labore qui quos nam tempora incidunt? Autem aperiam sed reprehenderit magni ratione vel quaerat sint repudiandae omnis eum id non exercitationem officia accusantium repellat libero reiciendis nemo, provident iure? Ipsum ut asperiores consequatur, debitis quia explicabo repellat quam eum voluptate odit nulla sunt. Atque quo animi aperiam.</p>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor optio explicabo quia, voluptatem recusandae quidem cum deleniti a, vitae dicta officia sed esse nobis vero! Dolor iusto corporis quis voluptates voluptatibus officia ipsa labore qui dolorum voluptate vero pariatur, saepe sunt, magnam non rerum reprehenderit ut necessitatibus atque. Esse illo, optio quae ullam repudiandae eveniet ipsam ad dolorum, hic porro vel, ratione consectetur accusantium!</p>
 </div>
-<div id="section2" class="container-fluid bg-warning" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+<div id="section2" class="container-fluid bg-light" style="padding-top:70px;padding-bottom:70px">
+  <h1>In de pers</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum repellendus voluptates, debitis praesentium quam iure! Cupiditate odit reprehenderit rerum ea asperiores sint a, ipsum eum rem neque quaerat non. Laborum odio, voluptates ex saepe voluptatem beatae perferendis vitae nulla magnam qui quisquam et quaerat ullam. Alias ab quidem consectetur ipsam expedita incidunt eum accusantium quam quod, obcaecati labore, repudiandae facere quae quia suscipit! Iste?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio repellendus libero temporibus praesentium officia sequi, nihil nemo, vel ea totam, ex facere enim eum nostrum adipisci quos esse odio nisi sed facilis non minima! Unde facilis dicta, pariatur laboriosam ut eos! Quis corrupti corporis assumenda veniam.</p>
 </div>
-<div id="section3" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 3</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section41" class="container-fluid bg-danger" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 4 Submenu 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section42" class="container-fluid bg-info" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 4 Submenu 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
+<div id="section3" class="container-fluid " style="padding-top:70px;padding-bottom:70px">
+  <h1>Onze klanten</h1>
+  <p>Hieronder kunt u recencies van onze klanten bekijken!</p>
+  <table>
+    <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Bericht</th>
+    </tr>
 
 
-<div class="container-fluid">
-<div class="jumbotron-fluid">
-<table>
- <tr>
-  <th>ID</th>
-  <th>Naam</th>
-  <th>Bericht</th>
- </tr>
+    <?php
+    require "formdb.php";
+    $sql = "SELECT id, naam, bericht FROM form";
+    // mysqli_query($conn, $form);
+    $result = $conn->query($sql);
 
-<?php
-require "formdb.php";
-$sql = "SELECT id, naam, bericht FROM form";
-// mysqli_query($conn, $form);
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["id"] . "</td><td>" . $row["naam"] . "</td><td>"
-            . $row["bericht"] . "</td></tr>";
-    }
-    echo "</table>";
-} else {echo "0 results";}
-$conn->close();
-?>
-</table>
-</div>
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["id"] . "</td><td>" . $row["naam"] . "</td><td>"
+                . $row["bericht"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {echo "0 results";}
+    $conn->close();
+    ?>
+    </table>
 </div>
 
     <!-- Modal HTML -->
@@ -169,7 +153,7 @@ $conn->close();
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit quos dignissimos alias nobis, delectus sapiente tempora sit ipsam, cupiditate vero debitis sunt a illum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
             </div>
         </div>
