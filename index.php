@@ -1,5 +1,5 @@
 <?php
-// $error = "";
+$error = "";
 if (isset($_POST['submit'])) {
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         require "formdb.php";
@@ -13,20 +13,20 @@ if (isset($_POST['submit'])) {
             if ($aantal == 1) {
                 $user = $result->fetch_row();
                 session_start();
-                $_SESSION['user'] = $user[1];
+                // $_SESSION['user'] = $user[1];
                 $_SESSION['ingelogd'] = true;
                 header("Location: ingelogddb.php");
             } else {
-                // $error = "Username or password incorrect.";
-                echo '<script language="javascript">';
-                echo 'alert("Username or password incorrect.")';
-                echo '</script>';
+                $error = "Username or password incorrect.";
+                // echo '<script language="javascript">';
+                // echo 'alert("Username or password incorrect.")';
+                // echo '</script>';
             }
         }
     }
-    // else {
-    //     $error = "Username en password zijn verplicht.";
-    // }
+    else {
+        $error = "Username en password zijn verplicht.";
+    }
 }
 ?>
 
@@ -112,17 +112,18 @@ if (isset($_POST['submit'])) {
 </div>
 
 
-
+<div class="container-fluid">
+<div class="jumbotron-fluid">
 <table>
  <tr>
-  <th>Id</th>
-  <th>Username</th>
-  <th>Password</th>
+  <th>ID</th>
+  <th>Naam</th>
+  <th>Bericht</th>
  </tr>
 
 <?php
 require "formdb.php";
-$sql = "SELECT * FROM form";
+$sql = "SELECT id, naam, bericht FROM form";
 // mysqli_query($conn, $form);
 $result = $conn->query($sql);
 
@@ -137,7 +138,8 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 </table>
-
+</div>
+</div>
 
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
@@ -164,7 +166,7 @@ $conn->close();
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <p>Bezoekers krijgen de inloggegevens om een recensie te plaatsen. <br> Dit is om neppe recensies te voorkomen.</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit quos dignissimos alias nobis, delectus sapiente tempora sit ipsam, cupiditate vero debitis sunt a illum.</p>
                 </div>
             </div>
         </div>
