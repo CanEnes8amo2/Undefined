@@ -18,9 +18,12 @@ if (isset($_POST['submit'])) {
                 header("Location: ingelogddb.php");
             } else {
                 $error = "Username or password incorrect.";
-                // echo '<script language="javascript">';
-                // echo 'alert("Username or password incorrect.")';
-                // echo '</script>';
+                echo
+                '<script language="javascript">;
+                 alert("Username or password incorrect.");
+                 window.location.replace("index.php");
+                </script>';
+                
             }
         }
     }
